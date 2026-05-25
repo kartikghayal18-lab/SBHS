@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBHS Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-card">
+        <span class="eyebrow">SBHS Secure Access</span>
+        <h1 class="page-title">Portal Login</h1>
+        <p class="muted">
+          Login as admin, teacher, or student. New teachers and students added by
+          admin can sign in with the IDs and passwords created in the admin dashboard.
+        </p>
+
+        <form id="login-form" class="form-stack">
+          <label class="field">
+            <span>Role</span>
+            <select id="role" name="role">
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="student">Student</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Login ID</span>
+            <input id="loginId" name="loginId" type="text" placeholder="Enter login ID" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="password" name="password" type="password" placeholder="Enter password" required />
+          </label>
+          <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+        </form>
+
+        <div class="notice-box">
+          <strong>Demo Accounts</strong>
+          <ul class="simple-list">
+            <li>Admin: `admin` / `admin123`</li>
+            <li>Teacher: `SBHS-T001` / `teach123`</li>
+            <li>Student: `SBHS-S001` / `stud123`</li>
+          </ul>
+        </div>
+
+        <p id="login-message" class="feedback-message" aria-live="polite"></p>
+        <a class="text-link" href="./index.html">Back to portal home</a>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+    <script>
+      window.SBHSApp.initLoginPage();
+    </script>
+  </body>
+</html>

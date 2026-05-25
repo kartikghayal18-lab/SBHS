@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBHS Teacher Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(99, 102, 241, 0.2), transparent 24%),
+          linear-gradient(180deg, #020617 0%, #0f172a 100%);
+        color: #e5eefb;
+      }
+
+      .file-launch-screen {
+        min-height: 100vh;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      html.is-file .file-launch-screen {
+        display: flex;
+      }
+
+      html.is-file #root {
+        display: none;
+      }
+
+      .file-launch-card {
+        width: min(100%, 560px);
+        padding: 32px;
+        border-radius: 32px;
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 80px rgba(2, 6, 23, 0.45);
+        backdrop-filter: blur(16px);
+      }
+
+      .file-launch-card h1 {
+        margin: 0 0 12px;
+        font-size: 2rem;
+        line-height: 1.05;
+      }
+
+      .file-launch-card p {
+        margin: 0 0 14px;
+        color: rgba(226, 232, 240, 0.86);
+        line-height: 1.7;
+      }
+
+      .file-launch-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .file-launch-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 18px;
+        border-radius: 18px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .file-launch-button.primary {
+        background: linear-gradient(90deg, #818cf8 0%, #38bdf8 100%);
+        color: #020617;
+      }
+
+      .file-launch-button.secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .launch-status {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(15, 23, 42, 0.72);
+        color: #cbd5e1;
+        font-size: 0.95rem;
+      }
+    </style>
+    <script>
+      if (window.location.protocol === "file:") {
+        document.documentElement.classList.add("is-file");
+
+        const probeServer = async (port) => {
+          const controller = new AbortController();
+          const timeout = window.setTimeout(() => controller.abort(), 700);
+
+          try {
+            await fetch(`http://127.0.0.1:${port}/@vite/client`, {
+              mode: "no-cors",
+              cache: "no-store",
+              signal: controller.signal
+            });
+            return true;
+          } catch (error) {
+            return false;
+          } finally {
+            window.clearTimeout(timeout);
+          }
+        };
+
+        window.addEventListener("DOMContentLoaded", () => {
+          const ports = [8013, 8014, 5173];
+          const launchTargets = {
+            teacher: document.getElementById("teacher-launch-link"),
+            login: document.getElementById("teacher-login-link"),
+            secondary: document.getElementById("teacher-secondary-link")
+          };
+          const status = document.getElementById("launch-status");
+
+          const setLinks = (port) => {
+            const teacherUrl = `http://127.0.0.1:${port}/teacher.html`;
+            const loginUrl = `http://127.0.0.1:${port}/login.html?role=teacher`;
+            if (launchTargets.teacher) launchTargets.teacher.href = teacherUrl;
+            if (launchTargets.login) launchTargets.login.href = loginUrl;
+            if (launchTargets.secondary) launchTargets.secondary.href = teacherUrl;
+          };
+
+          const detectServer = async () => {
+            status.textContent = "Looking for the running SBHS teacher workspace on localhost...";
+            for (const port of ports) {
+              const isAvailable = await probeServer(port);
+              if (isAvailable) {
+                setLinks(port);
+                status.textContent = `Teacher workspace detected on localhost:${port}. Open it using the button below.`;
+                return;
+              }
+            }
+
+            setLinks(8013);
+            status.textContent =
+              "No running localhost app was detected. Start the Vite server, then use the launch buttons.";
+          };
+
+          detectServer();
+        });
+      }
+    </script>
+    <script type="module" src="/src/teacher-main.jsx"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="file-launch-screen" class="file-launch-screen">
+      <div class="file-launch-card">
+        <h1>SBHS Teacher Workspace runs on localhost</h1>
+        <p>
+          The teacher panel is now a React mobile-first app, so opening it with
+          <code>file://</code> will not load the module bundle.
+        </p>
+        <p>Use the running localhost workspace instead. This launcher will detect the active app port.</p>
+        <div class="file-launch-actions">
+          <a
+            id="teacher-launch-link"
+            class="file-launch-button primary"
+            href="http://127.0.0.1:8013/teacher.html"
+          >
+            Open Teacher Workspace
+          </a>
+          <a
+            id="teacher-login-link"
+            class="file-launch-button secondary"
+            href="http://127.0.0.1:8013/login.html?role=teacher"
+          >
+            Open Teacher Login
+          </a>
+        </div>
+        <div id="launch-status" class="launch-status">Checking localhost...</div>
+        <div class="file-launch-actions">
+          <a
+            id="teacher-secondary-link"
+            class="file-launch-button secondary"
+            href="http://127.0.0.1:8013/teacher.html"
+          >
+            Retry Teacher Workspace
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

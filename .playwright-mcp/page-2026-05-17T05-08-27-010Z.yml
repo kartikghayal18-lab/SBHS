@@ -1,0 +1,359 @@
+- generic [ref=e1]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: SB
+          - generic [ref=e9]:
+            - paragraph [ref=e10]: SBHS ERP
+            - paragraph [ref=e11]: Sahaj Blossom High School
+        - generic [ref=e12]:
+          - button "Collapse sidebar" [ref=e13]:
+            - img [ref=e14]
+          - button "Close" [ref=e16]:
+            - img [ref=e17]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: SA
+          - generic [ref=e23]:
+            - paragraph [ref=e24]: SBHS Admin
+            - generic [ref=e25]: Online and operational
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - paragraph [ref=e29]: Students
+            - paragraph [ref=e30]: "3"
+          - generic [ref=e31]:
+            - paragraph [ref=e32]: Pending
+            - paragraph [ref=e33]: ₹17,000
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Workspace
+          - generic [ref=e37]:
+            - button "Dashboard" [ref=e38]:
+              - img [ref=e40]
+              - generic [ref=e45]: Dashboard
+            - button "Teachers" [ref=e46]:
+              - img [ref=e48]
+              - generic [ref=e60]: Teachers
+            - button "Students" [ref=e61]:
+              - img [ref=e63]
+              - generic [ref=e68]: Students
+            - button "Finance" [ref=e69]:
+              - img [ref=e71]
+              - generic [ref=e73]: Finance
+            - button "Attendance" [ref=e74]:
+              - img [ref=e76]
+              - generic [ref=e80]: Attendance
+            - button "Academics" [ref=e81]:
+              - img [ref=e83]
+              - generic [ref=e86]: Academics
+        - generic [ref=e87]:
+          - paragraph [ref=e88]: Operations
+          - generic [ref=e89]:
+            - button "Notices 1" [ref=e90]:
+              - img [ref=e92]
+              - generic [ref=e95]: Notices
+              - generic [ref=e96]: "1"
+            - button "Reports" [ref=e97]:
+              - img [ref=e99]
+              - generic [ref=e102]: Reports
+            - button "Analytics" [ref=e103]:
+              - img [ref=e105]
+              - generic [ref=e108]: Analytics
+            - button "Settings" [ref=e109]:
+              - img [ref=e111]
+              - generic [ref=e114]: Settings
+      - generic [ref=e115]:
+        - paragraph [ref=e116]: School Status
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - paragraph [ref=e119]: Session live
+            - paragraph [ref=e120]: All systems operational
+          - img [ref=e121]
+    - main [ref=e124]:
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - button "Open sidebar" [ref=e129]:
+            - img [ref=e130]
+          - generic [ref=e131]:
+            - img [ref=e132]
+            - textbox [ref=e135]:
+              - /placeholder: Global search across activity, students, teachers, and ERP signals
+        - generic [ref=e136]:
+          - generic [ref=e137]: Operational
+          - button "Quick Action" [ref=e138]:
+            - img [ref=e139]
+            - text: Quick Action
+          - button "3" [ref=e140]:
+            - img [ref=e141]
+            - generic [ref=e144]: "3"
+          - button "Toggle theme" [ref=e145]:
+            - img [ref=e146]
+          - generic [ref=e152]:
+            - generic [ref=e153]: AD
+            - generic [ref=e154]:
+              - paragraph [ref=e155]: SBHS Admin
+              - paragraph [ref=e156]: Premium ERP workspace
+          - button "Logout" [ref=e157]:
+            - img [ref=e158]
+      - generic [ref=e623]:
+        - generic [ref=e624]:
+          - generic [ref=e625]:
+            - generic [ref=e626]:
+              - img [ref=e627]
+              - text: Student Operations Center
+            - heading "Profiles, performance, attendance, and fee visibility" [level=2] [ref=e630]
+            - paragraph [ref=e631]: A real operations view of students with profile modals, smart filters, warnings, and bulk actions.
+          - generic [ref=e632]:
+            - button "Send Notice" [ref=e633]:
+              - img [ref=e634]
+              - text: Send Notice
+            - button "Export PDF" [ref=e637]:
+              - img [ref=e638]
+              - text: Export PDF
+        - generic [ref=e641]:
+          - generic [ref=e642]:
+            - generic [ref=e643]:
+              - generic [ref=e644]: Top Performers
+              - img [ref=e645]
+            - paragraph [ref=e648]: "1"
+            - generic [ref=e649]: above 85% average
+          - generic [ref=e650]:
+            - generic [ref=e651]:
+              - generic [ref=e652]: Low Attendance
+              - img [ref=e653]
+            - paragraph [ref=e660]: "1"
+            - generic [ref=e661]: below 90% attendance
+          - generic [ref=e662]:
+            - generic [ref=e663]:
+              - generic [ref=e664]: Fee Pending
+              - img [ref=e665]
+            - paragraph [ref=e668]: "2"
+            - generic [ref=e669]: students with outstanding fees
+        - generic [ref=e670]:
+          - generic [ref=e671]:
+            - generic [ref=e672]:
+              - generic [ref=e674]:
+                - generic [ref=e675]:
+                  - img [ref=e676]
+                  - text: Student Directory
+                - heading "Smart Filters and Compact Table" [level=2] [ref=e679]
+                - paragraph [ref=e680]: Search by student name or roll number, then filter by class, attendance, or fee status.
+              - generic [ref=e681]:
+                - generic [ref=e682]:
+                  - img [ref=e683]
+                  - textbox [ref=e686]:
+                    - /placeholder: Search student or roll no
+                - combobox [ref=e687]:
+                  - option "All Classes" [selected]
+                  - option "Class 7-A"
+                  - option "Class 10-A"
+                - combobox [ref=e688]:
+                  - option "All Attendance" [selected]
+                  - option "Healthy Attendance"
+                  - option "Warning Attendance"
+                - combobox [ref=e689]:
+                  - option "All Fee Status" [selected]
+                  - option "Paid"
+                  - option "Pending"
+            - generic [ref=e692]:
+              - generic [ref=e693]:
+                - generic [ref=e694]: Student
+                - generic [ref=e695]: Fees
+                - generic [ref=e696]: Attendance
+                - generic [ref=e697]: Performance
+                - generic [ref=e698]: Action
+              - generic [ref=e699]:
+                - generic [ref=e700]:
+                  - generic [ref=e702]:
+                    - generic [ref=e703]: AD
+                    - generic [ref=e704]:
+                      - paragraph [ref=e705]: Ananya Das
+                      - paragraph [ref=e706]: Class 7-A • 07A-14
+                      - paragraph [ref=e707]: Sudipta Das • SBHS-S002
+                  - generic [ref=e708]:
+                    - paragraph [ref=e709]: ₹18,000
+                    - paragraph [ref=e710]: Pending ₹0
+                  - generic [ref=e713]:
+                    - generic [ref=e714]: Attendance
+                    - generic [ref=e715]: 98%
+                  - generic [ref=e718]:
+                    - generic [ref=e719]: Top Performer
+                    - generic [ref=e720]: Fees Cleared
+                  - button "Open Profile" [ref=e722]
+                - generic [ref=e723]:
+                  - generic [ref=e725]:
+                    - generic [ref=e726]: AS
+                    - generic [ref=e727]:
+                      - paragraph [ref=e728]: Aarav Singh
+                      - paragraph [ref=e729]: Class 7-A • 07A-12
+                      - paragraph [ref=e730]: Rajesh Singh • SBHS-S001
+                  - generic [ref=e731]:
+                    - paragraph [ref=e732]: ₹14,500
+                    - paragraph [ref=e733]: Pending ₹3,500
+                  - generic [ref=e736]:
+                    - generic [ref=e737]: Attendance
+                    - generic [ref=e738]: 95%
+                  - generic [ref=e741]:
+                    - generic [ref=e742]: Stable
+                    - generic [ref=e743]: Fee Pending
+                  - button "Open Profile" [ref=e745]
+                - generic [ref=e746]:
+                  - generic [ref=e748]:
+                    - generic [ref=e749]: PK
+                    - generic [ref=e750]:
+                      - paragraph [ref=e751]: Prasad Kulkarni
+                      - paragraph [ref=e752]: Class 10-A • 10A-03
+                      - paragraph [ref=e753]: Madhavi Kulkarni • SBHS-S003
+                  - generic [ref=e754]:
+                    - paragraph [ref=e755]: ₹5,000
+                    - paragraph [ref=e756]: Pending ₹13,500
+                  - generic [ref=e759]:
+                    - generic [ref=e760]: Attendance
+                    - generic [ref=e761]: 88%
+                  - generic [ref=e764]:
+                    - generic [ref=e765]: Stable
+                    - generic [ref=e766]: Fee Pending
+                  - button "Open Profile" [ref=e768]
+          - generic [ref=e769]:
+            - generic [ref=e771]:
+              - generic [ref=e772]:
+                - img [ref=e773]
+                - text: Add Student
+              - heading "Fast Student Onboarding" [level=2] [ref=e776]
+              - paragraph [ref=e777]: Compact onboarding with parent contact, fees, and class mapping.
+            - generic [ref=e778]:
+              - generic [ref=e779]:
+                - generic [ref=e780]: Student Name
+                - textbox "Student Name" [ref=e782]:
+                  - /placeholder: Enter student name
+              - generic [ref=e783]:
+                - generic [ref=e784]: Class
+                - textbox "Class" [ref=e786]:
+                  - /placeholder: Class 6-A
+              - generic [ref=e787]:
+                - generic [ref=e788]: Roll Number
+                - textbox "Roll Number" [ref=e790]:
+                  - /placeholder: 06A-21
+              - generic [ref=e791]:
+                - generic [ref=e792]: Password
+                - textbox "Password" [ref=e794]:
+                  - /placeholder: Create password
+              - generic [ref=e795]:
+                - generic [ref=e796]: Parent Name
+                - textbox "Parent Name" [ref=e798]:
+                  - /placeholder: Parent name
+              - generic [ref=e799]:
+                - generic [ref=e800]: Parent Phone
+                - textbox "Parent Phone" [ref=e802]:
+                  - /placeholder: +91 9XXXXXXXXX
+              - generic [ref=e803]:
+                - generic [ref=e804]: Total Fees
+                - spinbutton "Total Fees" [ref=e806]
+              - generic [ref=e807]:
+                - generic [ref=e808]: Due Date
+                - textbox "Due Date" [ref=e810]: 2026-05-17
+              - generic [ref=e811]:
+                - generic [ref=e812]: Remarks
+                - textbox "Remarks" [ref=e813]:
+                  - /placeholder: Any admin remarks or support notes
+              - button "Add Student" [ref=e815]:
+                - img [ref=e816]
+                - text: Add Student
+        - generic [ref=e817]:
+          - generic [ref=e818]:
+            - generic [ref=e820]:
+              - generic [ref=e821]:
+                - img [ref=e822]
+                - text: Class Management
+              - heading "Classes, student count, and live class reports" [level=2] [ref=e825]
+              - paragraph [ref=e826]: See how many classes are in school, how many students are in each class, and download class-wise student PDFs.
+            - generic [ref=e827]:
+              - generic [ref=e828]:
+                - generic [ref=e829]:
+                  - generic [ref=e830]:
+                    - paragraph [ref=e831]: Class 7-A
+                    - paragraph [ref=e832]: 2 students in this class
+                  - generic [ref=e833]: "2"
+                - generic [ref=e834]:
+                  - generic [ref=e835]:
+                    - paragraph [ref=e836]: Pending
+                    - paragraph [ref=e837]: "1"
+                  - generic [ref=e838]:
+                    - paragraph [ref=e839]: Attendance
+                    - paragraph [ref=e840]: 97%
+                  - generic [ref=e841]:
+                    - paragraph [ref=e842]: Performance
+                    - paragraph [ref=e843]: 85%
+                - generic [ref=e844]:
+                  - button "Download PDF" [ref=e845]:
+                    - img [ref=e846]
+                    - text: Download PDF
+                  - button "Manage Class" [ref=e849]
+              - generic [ref=e850]:
+                - generic [ref=e851]:
+                  - generic [ref=e852]:
+                    - paragraph [ref=e853]: Class 10-A
+                    - paragraph [ref=e854]: 1 students in this class
+                  - generic [ref=e855]: "1"
+                - generic [ref=e856]:
+                  - generic [ref=e857]:
+                    - paragraph [ref=e858]: Pending
+                    - paragraph [ref=e859]: "1"
+                  - generic [ref=e860]:
+                    - paragraph [ref=e861]: Attendance
+                    - paragraph [ref=e862]: 88%
+                  - generic [ref=e863]:
+                    - paragraph [ref=e864]: Performance
+                    - paragraph [ref=e865]: 75%
+                - generic [ref=e866]:
+                  - button "Download PDF" [ref=e867]:
+                    - img [ref=e868]
+                    - text: Download PDF
+                  - button "Manage Class" [ref=e871]
+          - generic [ref=e872]:
+            - generic [ref=e874]:
+              - generic [ref=e875]:
+                - img [ref=e876]
+                - text: Promotion Center
+              - heading "Rename class and promote to next class" [level=2] [ref=e879]
+              - paragraph [ref=e880]: Use this at the end of the school year to edit class names and move students to the next class.
+            - generic [ref=e881]:
+              - combobox [ref=e882]:
+                - option "Class 7-A • 2 students" [selected]
+                - option "Class 10-A • 1 students"
+              - generic [ref=e883]:
+                - generic [ref=e884]: Edit Class Name
+                - textbox "Edit Class Name" [ref=e886]:
+                  - /placeholder: Class 8-A
+                  - text: Class 7-A
+              - generic [ref=e887]:
+                - generic [ref=e888]: Promote To Next Class
+                - textbox "Promote To Next Class Edit this only if you want a custom next class label." [ref=e890]:
+                  - /placeholder: Class 9-A
+                  - text: Class 8-A
+                - generic [ref=e891]: Edit this only if you want a custom next class label.
+              - generic [ref=e892]:
+                - button "Update Class Name" [ref=e893]:
+                  - img [ref=e894]
+                  - text: Update Class Name
+                - button "Promote Students" [ref=e899]:
+                  - img [ref=e900]
+                  - text: Promote Students
+    - generic [ref=e585]:
+      - button "Dashboard" [ref=e586]:
+        - img [ref=e587]
+        - text: Dashboard
+      - button "Teachers" [ref=e592]:
+        - img [ref=e593]
+        - text: Teachers
+      - button "Students" [active] [ref=e605]:
+        - img [ref=e606]
+        - text: Students
+      - button "Finance" [ref=e611]:
+        - img [ref=e612]
+        - text: Finance
+      - button "Attendance" [ref=e614]:
+        - img [ref=e615]
+        - text: Attendance
+  - generic [ref=e619]: "0"

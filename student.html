@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBHS Student Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="phone-page">
+      <div class="phone-shell">
+        <header class="phone-top">
+          <div>
+            <p class="eyebrow">Student Panel</p>
+            <h1 id="student-name" class="phone-title">Student</h1>
+            <p id="student-meta" class="muted small"></p>
+          </div>
+          <div id="student-avatar" class="avatar">ST</div>
+        </header>
+
+        <section class="phone-card hero-card-mobile">
+          <p class="section-label">Dashboard Summary</p>
+          <h4 id="student-class-title">Class</h4>
+          <p id="student-summary"></p>
+        </section>
+
+        <section class="phone-grid-2">
+          <article class="phone-card">
+            <p class="section-label">Attendance</p>
+            <h4 id="student-attendance">0%</h4>
+            <p class="muted small">Current attendance percentage.</p>
+          </article>
+          <article class="phone-card">
+            <p class="section-label">Pending Fees</p>
+            <h4 id="student-pending-fees">Rs 0</h4>
+            <p class="muted small">Updated by admin dashboard.</p>
+          </article>
+        </section>
+
+        <div class="student-section-switcher">
+          <button class="student-tab active" type="button" data-student-tab="overview">Overview</button>
+          <button class="student-tab" type="button" data-student-tab="study">Study</button>
+          <button class="student-tab" type="button" data-student-tab="progress">Progress</button>
+          <button class="student-tab" type="button" data-student-tab="school">School</button>
+        </div>
+
+        <section class="student-section" data-student-section="overview">
+          <section class="phone-card">
+            <p class="section-label">Today Focus</p>
+            <div class="student-overview-grid">
+              <article class="student-highlight-card">
+                <strong>Homework</strong>
+                <p id="student-homework-summary" class="muted small"></p>
+              </article>
+              <article class="student-highlight-card">
+                <strong>Notices</strong>
+                <p id="student-notice-summary" class="muted small"></p>
+              </article>
+              <article class="student-highlight-card">
+                <strong>Best Subject</strong>
+                <p id="student-best-subject" class="muted small"></p>
+              </article>
+              <article class="student-highlight-card">
+                <strong>Need Focus</strong>
+                <p id="student-focus-subject" class="muted small"></p>
+              </article>
+            </div>
+          </section>
+
+          <section class="phone-card compact-phone-card">
+            <p class="section-label">Quick Reminder</p>
+            <div id="student-reminder-list" class="stack-list"></div>
+          </section>
+        </section>
+
+        <section class="student-section is-hidden" data-student-section="study">
+          <section class="phone-card">
+            <p class="section-label">Homework</p>
+            <div id="student-homework-list" class="stack-list"></div>
+          </section>
+
+          <section class="phone-card">
+            <p class="section-label">Notes and Test Papers</p>
+            <div id="student-resources-list" class="stack-list"></div>
+          </section>
+        </section>
+
+        <section class="student-section is-hidden" data-student-section="progress">
+          <section class="phone-card">
+            <p class="section-label">Performance Card</p>
+            <h4 id="student-performance-average">Average: 0%</h4>
+            <div id="student-performance-list" class="stack-list"></div>
+          </section>
+        </section>
+
+        <section class="student-section is-hidden" data-student-section="school">
+          <section class="phone-card">
+            <p class="section-label">School Notices</p>
+            <div id="student-notices-list" class="stack-list"></div>
+          </section>
+
+          <section class="phone-card">
+            <p class="section-label">Fee Status</p>
+            <div id="student-fee-status" class="stack-list"></div>
+          </section>
+        </section>
+
+        <nav class="bottom-nav student-bottom-nav">
+          <a class="active" href="./student.html">Dashboard</a>
+          <a href="./login.html?role=student">Login</a>
+          <button id="logout-student" class="bottom-nav-button">Logout</button>
+        </nav>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+    <script>
+      window.SBHSApp.initStudentPage();
+    </script>
+  </body>
+</html>

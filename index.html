@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBHS Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell landing-shell">
+      <section class="hero">
+        <article class="hero-card">
+          <span class="eyebrow">Sahaj Blossom High School</span>
+          <h1>Working School Portal Model</h1>
+          <p>
+            This is now a working SBHS portal model with role-based login,
+            saved data, and connected dashboards for admin, teacher, and
+            student. Admin actions update the teacher and student views.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./login.html?role=admin">Admin Login</a>
+            <a class="btn btn-secondary" href="./login.html?role=teacher">Teacher Login</a>
+            <a class="btn btn-secondary" href="./login.html?role=student">Student Login</a>
+          </div>
+          <div class="notice-box">
+            <strong>Demo Logins</strong>
+            <p class="muted small">
+              Admin: `admin` / `admin123` |
+              Teacher: `SBHS-T001` / `teach123` |
+              Student: `SBHS-S001` / `stud123`
+            </p>
+          </div>
+        </article>
+
+        <article class="hero-card">
+          <div class="hero-grid">
+            <div class="stat-card">
+              <p class="section-label">Admin Controls</p>
+              <strong>10+</strong>
+              <p class="muted">Teacher creation, notices, fees, attendance, and reports.</p>
+            </div>
+            <div class="stat-card">
+              <p class="section-label">Teacher Actions</p>
+              <strong>6</strong>
+              <p class="muted">Homework, notes, tests, attendance, and progress review.</p>
+            </div>
+            <div class="stat-card">
+              <p class="section-label">Student Access</p>
+              <strong>24/7</strong>
+              <p class="muted">Homework, notices, fees, attendance, and performance card.</p>
+            </div>
+            <div class="stat-card">
+              <p class="section-label">Data Storage</p>
+              <strong>Live</strong>
+              <p class="muted">Uses browser storage so dashboard changes stay connected.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="landing-sections">
+        <article class="card">
+          <h3>Admin Dashboard</h3>
+          <ul class="feature-list">
+            <li>Create teacher IDs and passwords</li>
+            <li>Add students and update student class</li>
+            <li>Manage fees, salary, notices, and attendance</li>
+            <li>Update student performance card</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Teacher Dashboard</h3>
+          <ul class="feature-list">
+            <li>See own class students and progress</li>
+            <li>Upload homework, notes, and test paper</li>
+            <li>Mark attendance from mobile layout</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Student Dashboard</h3>
+          <ul class="feature-list">
+            <li>View homework, fees, notices, and attendance</li>
+            <li>Check performance card and recent marks</li>
+            <li>Mobile-first layout like a real app screen</li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

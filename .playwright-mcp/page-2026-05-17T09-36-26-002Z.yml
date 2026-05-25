@@ -1,0 +1,328 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - complementary [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: SB
+          - generic [ref=e9]:
+            - paragraph [ref=e10]: SBHS ERP
+            - paragraph [ref=e11]: Sahaj Blossom High School
+        - generic [ref=e12]:
+          - button "Collapse sidebar" [ref=e13]:
+            - img [ref=e14]
+          - button "Close" [ref=e16]:
+            - img [ref=e17]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: SA
+          - generic [ref=e23]:
+            - paragraph [ref=e24]: SBHS Admin
+            - generic [ref=e25]: Online and operational
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - paragraph [ref=e29]: Students
+            - paragraph [ref=e30]: "3"
+          - generic [ref=e31]:
+            - paragraph [ref=e32]: Pending
+            - paragraph [ref=e33]: ₹17,000
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Workspace
+          - generic [ref=e37]:
+            - button "Dashboard" [ref=e38]:
+              - img [ref=e40]
+              - generic [ref=e45]: Dashboard
+            - button "Teachers" [ref=e46]:
+              - img [ref=e48]
+              - generic [ref=e60]: Teachers
+            - button "Students" [ref=e61]:
+              - img [ref=e63]
+              - generic [ref=e68]: Students
+            - button "Classrooms" [ref=e69]:
+              - img [ref=e71]
+              - generic [ref=e76]: Classrooms
+            - button "Finance" [ref=e77]:
+              - img [ref=e79]
+              - generic [ref=e81]: Finance
+            - button "Attendance" [ref=e82]:
+              - img [ref=e84]
+              - generic [ref=e88]: Attendance
+            - button "Academics" [ref=e89]:
+              - img [ref=e91]
+              - generic [ref=e94]: Academics
+        - generic [ref=e95]:
+          - paragraph [ref=e96]: Operations
+          - generic [ref=e97]:
+            - button "Notices 1" [ref=e98]:
+              - img [ref=e100]
+              - generic [ref=e103]: Notices
+              - generic [ref=e104]: "1"
+            - button "Reports" [ref=e105]:
+              - img [ref=e107]
+              - generic [ref=e110]: Reports
+            - button "Analytics" [ref=e111]:
+              - img [ref=e113]
+              - generic [ref=e116]: Analytics
+            - button "Settings" [ref=e117]:
+              - img [ref=e119]
+              - generic [ref=e122]: Settings
+      - generic [ref=e123]:
+        - paragraph [ref=e124]: School Status
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - paragraph [ref=e127]: Session live
+            - paragraph [ref=e128]: All systems operational
+          - img [ref=e129]
+    - main [ref=e132]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - button "Open sidebar" [ref=e137]:
+            - img [ref=e138]
+          - generic [ref=e139]:
+            - img [ref=e140]
+            - textbox [ref=e143]:
+              - /placeholder: Global search across activity, students, teachers, and ERP signals
+        - generic [ref=e144]:
+          - generic [ref=e145]: Operational
+          - button "Quick Action" [ref=e146]:
+            - img [ref=e147]
+            - text: Quick Action
+          - button "3" [ref=e148]:
+            - img [ref=e149]
+            - generic [ref=e152]: "3"
+          - button "Toggle theme" [ref=e153]:
+            - img [ref=e154]
+          - generic [ref=e160]:
+            - generic [ref=e161]: AD
+            - generic [ref=e162]:
+              - paragraph [ref=e163]: SBHS Admin
+              - paragraph [ref=e164]: Premium ERP workspace
+          - button "Logout" [ref=e165]:
+            - img [ref=e166]
+      - generic [ref=e170]:
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - img [ref=e174]
+            - text: Operations Center
+          - heading "Live School Command Dashboard" [level=2] [ref=e177]
+          - paragraph [ref=e178]: A premium operational view of school revenue, attendance, growth, and events with fast admin actions.
+        - generic [ref=e179]:
+          - generic [ref=e180]:
+            - generic [ref=e182]:
+              - img [ref=e184]
+              - generic [ref=e189]: ↑ 8% admissions
+            - paragraph [ref=e190]: Total Students
+            - heading "3" [level=3] [ref=e192]
+          - generic [ref=e201]:
+            - generic [ref=e203]:
+              - img [ref=e205]
+              - generic [ref=e209]: Stable workforce
+            - paragraph [ref=e210]: Total Teachers
+            - heading "2" [level=3] [ref=e212]
+          - generic [ref=e221]:
+            - generic [ref=e223]:
+              - img [ref=e225]
+              - generic [ref=e228]: ↑ 12% this month
+            - paragraph [ref=e229]: Total Revenue
+            - heading "₹32,500" [level=3] [ref=e231]
+          - generic [ref=e240]:
+            - generic [ref=e242]:
+              - img [ref=e244]
+              - generic [ref=e247]: 2 students pending
+            - paragraph [ref=e248]: Pending Fees
+            - heading "₹17,000" [level=3] [ref=e250]
+          - generic [ref=e259]:
+            - generic [ref=e261]:
+              - img [ref=e263]
+              - generic [ref=e267]: ↑ 5% this week
+            - paragraph [ref=e268]: Attendance
+            - heading "93%" [level=3] [ref=e270]
+          - generic [ref=e279]:
+            - generic [ref=e281]:
+              - img [ref=e283]
+              - generic [ref=e285]: Academic review live
+            - paragraph [ref=e286]: Exams This Week
+            - heading "1" [level=3] [ref=e288]
+          - generic [ref=e297]:
+            - generic [ref=e299]:
+              - img [ref=e301]
+              - generic [ref=e303]: All sections synced
+            - paragraph [ref=e304]: Active Classes
+            - heading "2" [level=3] [ref=e306]
+          - generic [ref=e315]:
+            - generic [ref=e317]:
+              - img [ref=e319]
+              - generic [ref=e322]: Communications healthy
+            - paragraph [ref=e323]: Notices Sent
+            - heading "1" [level=3] [ref=e325]
+        - generic [ref=e334]:
+          - generic [ref=e335]:
+            - generic [ref=e337]:
+              - generic [ref=e338]:
+                - img [ref=e339]
+                - text: Revenue and Attendance
+              - heading "Real-Time School Analytics" [level=2] [ref=e342]
+              - paragraph [ref=e343]: Track revenue, attendance, and student growth from one premium chart zone.
+            - generic [ref=e344]:
+              - generic [ref=e345]:
+                - paragraph [ref=e346]: Monthly Revenue
+                - application [ref=e350]:
+                  - generic [ref=e368]:
+                    - generic [ref=e369]:
+                      - generic [ref=e371]: Jan 2026
+                      - generic [ref=e373]: Feb 2026
+                      - generic [ref=e375]: Mar 2026
+                      - generic [ref=e377]: Apr 2026
+                      - generic [ref=e379]: May 2026
+                      - generic [ref=e381]: Jun 2026
+                    - generic [ref=e382]:
+                      - generic [ref=e384]: 0k
+                      - generic [ref=e386]: 9k
+                      - generic [ref=e388]: 17k
+                      - generic [ref=e390]: 26k
+                      - generic [ref=e392]: 34k
+              - generic [ref=e393]:
+                - paragraph [ref=e394]: Attendance and Growth
+                - generic [ref=e397]:
+                  - list [ref=e399]:
+                    - listitem [ref=e400]:
+                      - img "attendance legend icon" [ref=e401]
+                      - text: attendance
+                    - listitem [ref=e403]:
+                      - img "growth legend icon" [ref=e404]
+                      - text: growth
+                  - application [ref=e406]:
+                    - generic [ref=e424]:
+                      - generic [ref=e425]:
+                        - generic [ref=e427]: Jan 2026
+                        - generic [ref=e429]: Feb 2026
+                        - generic [ref=e431]: Mar 2026
+                        - generic [ref=e433]: Apr 2026
+                        - generic [ref=e435]: May 2026
+                        - generic [ref=e437]: Jun 2026
+                      - generic [ref=e438]:
+                        - generic [ref=e440]: "0"
+                        - generic [ref=e442]: "25"
+                        - generic [ref=e444]: "50"
+                        - generic [ref=e446]: "75"
+                        - generic [ref=e448]: "100"
+          - generic [ref=e449]:
+            - generic [ref=e450]:
+              - generic [ref=e452]:
+                - generic [ref=e453]:
+                  - img [ref=e454]
+                  - text: Activity Feed
+                - heading "Live Operational Stream" [level=2] [ref=e457]
+                - paragraph [ref=e458]: Recent salary, attendance, student, and finance events.
+              - generic [ref=e460]:
+                - generic [ref=e461]:
+                  - generic [ref=e463]:
+                    - paragraph [ref=e464]: Priya Sharma salary marked paid
+                    - paragraph [ref=e465]: Finance cleared the monthly salary record.
+                  - generic [ref=e466]: 17 May 2026, 09:10
+                - generic [ref=e467]:
+                  - generic [ref=e469]:
+                    - paragraph [ref=e470]: New student added
+                    - paragraph [ref=e471]: Prasad Kulkarni account created for Class 10-A.
+                  - generic [ref=e472]: 17 May 2026, 08:25
+                - generic [ref=e473]:
+                  - generic [ref=e475]:
+                    - paragraph [ref=e476]: 2 teachers flagged for follow-up
+                    - paragraph [ref=e477]: Attendance is below ideal threshold today.
+                  - generic [ref=e478]: 17 May 2026, 08:00
+            - generic [ref=e479]:
+              - generic [ref=e481]:
+                - generic [ref=e482]:
+                  - img [ref=e483]
+                  - text: Upcoming Events
+                - heading "School Calendar Radar" [level=2] [ref=e486]
+                - paragraph [ref=e487]: Exams, deadlines, meetings, and upcoming school events.
+              - generic [ref=e488]:
+                - generic [ref=e489]:
+                  - generic [ref=e490]:
+                    - img [ref=e492]
+                    - generic [ref=e496]:
+                      - paragraph [ref=e497]: Mathematics Unit Test
+                      - paragraph [ref=e498]: Exam • Classes 7 to 10
+                  - generic [ref=e499]: 20 May 2026
+                - generic [ref=e500]:
+                  - generic [ref=e501]:
+                    - img [ref=e503]
+                    - generic [ref=e507]:
+                      - paragraph [ref=e508]: Monthly Fee Deadline
+                      - paragraph [ref=e509]: Finance • All Students
+                  - generic [ref=e510]: 25 May 2026
+                - generic [ref=e511]:
+                  - generic [ref=e512]:
+                    - img [ref=e514]
+                    - generic [ref=e518]:
+                      - paragraph [ref=e519]: PTA Review Meeting
+                      - paragraph [ref=e520]: Meeting • Parents and Admin
+                  - generic [ref=e521]: 27 May 2026
+        - generic [ref=e522]:
+          - generic [ref=e524]:
+            - generic [ref=e525]:
+              - img [ref=e526]
+              - text: Quick Actions
+            - heading "Action Center" [level=2] [ref=e529]
+            - paragraph [ref=e530]: Replace dead CRUD blocks with fast product actions for everyday school workflows.
+          - generic [ref=e531]:
+            - button "Add Student Open the student operations center and create a new account. Open action" [ref=e532]:
+              - img [ref=e534]
+              - heading "Add Student" [level=4] [ref=e535]
+              - paragraph [ref=e536]: Open the student operations center and create a new account.
+              - generic [ref=e537]:
+                - text: Open action
+                - img [ref=e538]
+            - button "Add Teacher Create teacher access, salary setup, and staff profile. Open action" [ref=e540]:
+              - img [ref=e542]
+              - heading "Add Teacher" [level=4] [ref=e546]
+              - paragraph [ref=e547]: Create teacher access, salary setup, and staff profile.
+              - generic [ref=e548]:
+                - text: Open action
+                - img [ref=e549]
+            - button "Publish Notice Send a school-wide update with priority tagging. Open action" [ref=e551]:
+              - img [ref=e553]
+              - heading "Publish Notice" [level=4] [ref=e557]
+              - paragraph [ref=e558]: Send a school-wide update with priority tagging.
+              - generic [ref=e559]:
+                - text: Open action
+                - img [ref=e560]
+            - button "Record Payment Capture fee collections and update pending balances. Open action" [ref=e562]:
+              - img [ref=e564]
+              - heading "Record Payment" [level=4] [ref=e567]
+              - paragraph [ref=e568]: Capture fee collections and update pending balances.
+              - generic [ref=e569]:
+                - text: Open action
+                - img [ref=e570]
+            - button "Upload Result Jump to academics and schedule a result workflow. Open action" [ref=e572]:
+              - img [ref=e574]
+              - heading "Upload Result" [level=4] [ref=e576]
+              - paragraph [ref=e577]: Jump to academics and schedule a result workflow.
+              - generic [ref=e578]:
+                - text: Open action
+                - img [ref=e579]
+            - button "Export Report Generate salary, attendance, or student export deliverables. Open action" [ref=e581]:
+              - img [ref=e583]
+              - heading "Export Report" [level=4] [ref=e586]
+              - paragraph [ref=e587]: Generate salary, attendance, or student export deliverables.
+              - generic [ref=e588]:
+                - text: Open action
+                - img [ref=e589]
+    - generic [ref=e593]:
+      - button "Dashboard" [ref=e594]:
+        - img [ref=e595]
+        - text: Dashboard
+      - button "Teachers" [ref=e600]:
+        - img [ref=e601]
+        - text: Teachers
+      - button "Students" [ref=e613]:
+        - img [ref=e614]
+        - text: Students
+      - button "Classrooms" [ref=e619]:
+        - img [ref=e620]
+        - text: Classrooms
+      - button "Finance" [ref=e625]:
+        - img [ref=e626]
+        - text: Finance
+  - generic [ref=e628]: "0"

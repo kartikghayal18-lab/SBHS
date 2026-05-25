@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBHS Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="portal-layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">SB</div>
+          <h2>SBHS Admin</h2>
+          <p>School management control panel for class 1st to 10th.</p>
+        </div>
+        <nav class="nav-list">
+          <button class="nav-link nav-button active" type="button" data-admin-tab="overview">Overview</button>
+          <button class="nav-link nav-button" type="button" data-admin-tab="teachers">Teachers</button>
+          <button class="nav-link nav-button" type="button" data-admin-tab="students">Students</button>
+          <button class="nav-link nav-button" type="button" data-admin-tab="finance">Fees and Attendance</button>
+          <button class="nav-link nav-button" type="button" data-admin-tab="academics">Academics</button>
+          <button class="nav-link nav-button" type="button" data-admin-tab="settings">Settings</button>
+          <button id="logout-admin" class="nav-link nav-button" type="button">Logout</button>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar" id="overview">
+          <div>
+            <p class="eyebrow">Admin Dashboard</p>
+            <h1 class="page-title">SBHS Working Portal</h1>
+            <p class="muted">
+              Create records, send notices, and manage the school from one place.
+            </p>
+          </div>
+          <div class="profile-chip">
+            <div class="searchbar">
+              <span>Live Data</span>
+              <input type="text" value="Admin changes sync to teacher and student dashboard" readonly />
+            </div>
+            <div class="avatar">AD</div>
+          </div>
+        </header>
+
+        <section class="section-switcher-panel">
+          <button class="section-tab active" type="button" data-admin-tab="overview">Overview</button>
+          <button class="section-tab" type="button" data-admin-tab="teachers">Teachers</button>
+          <button class="section-tab" type="button" data-admin-tab="students">Students</button>
+          <button class="section-tab" type="button" data-admin-tab="finance">Fees and Attendance</button>
+          <button class="section-tab" type="button" data-admin-tab="academics">Academics</button>
+          <button class="section-tab" type="button" data-admin-tab="settings">Settings</button>
+        </section>
+
+        <section class="desktop-grid">
+          <article class="section-card span-12" data-admin-section="overview">
+            <div class="card-head">
+              <div>
+                <p class="section-label">Quick Actions</p>
+                <h3 class="section-title">Fast Admin Controls</h3>
+              </div>
+            </div>
+            <div class="action-grid action-grid-4">
+              <div class="quick-card">
+                <h4>Create Teacher</h4>
+                <p class="muted small">Add login, subject, class, and salary.</p>
+              </div>
+              <div class="quick-card">
+                <h4>Add Student</h4>
+                <p class="muted small">Create a student dashboard with class and fees.</p>
+              </div>
+              <div class="quick-card">
+                <h4>Send Notice</h4>
+                <p class="muted small">Push updates to all students at once.</p>
+              </div>
+              <div class="quick-card">
+                <h4>Update Record</h4>
+                <p class="muted small">Change class, fees, attendance, and performance.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="desktop-panel span-3" data-admin-section="overview">
+            <p class="section-label">Students</p>
+            <h2 id="admin-total-students" class="value-xl">0</h2>
+            <p class="muted">Total student accounts in portal.</p>
+          </article>
+          <article class="desktop-panel span-3" data-admin-section="overview">
+            <p class="section-label">Teachers</p>
+            <h2 id="admin-total-teachers" class="value-xl">0</h2>
+            <p class="muted">Total teacher accounts in portal.</p>
+          </article>
+          <article class="desktop-panel span-3" data-admin-section="overview">
+            <p class="section-label">Notices</p>
+            <h2 id="admin-total-notices" class="value-xl">0</h2>
+            <p class="muted">Published school notices visible to all students.</p>
+          </article>
+          <article class="desktop-panel primary-panel span-3" data-admin-section="overview">
+            <p class="section-label">Pending Fees</p>
+            <h2 id="admin-pending-fees" class="value-xl">Rs 0</h2>
+            <p class="muted">Current outstanding student fees.</p>
+          </article>
+
+          <article class="section-card span-12 teacher-admin-overview-card" data-admin-section="teachers">
+            <div class="teacher-admin-header">
+              <div>
+                <p class="section-label">Teacher Salary and Attendance Dashboard</p>
+                <h3 class="section-title">Compact Operations Panel</h3>
+                <p class="muted teacher-admin-subtext">
+                  Review salary status, attendance health, exports, and fast teacher actions from one compact admin view.
+                </p>
+              </div>
+              <div class="teacher-admin-toolbar">
+                <button id="teacher-bulk-paid-button" class="btn btn-primary teacher-toolbar-button" type="button">
+                  Mark Filtered Paid
+                </button>
+                <button id="teacher-export-pdf-button" class="btn btn-secondary teacher-toolbar-button" type="button">
+                  Export Salary PDF
+                </button>
+                <button id="teacher-export-csv-button" class="btn btn-secondary teacher-toolbar-button" type="button">
+                  Attendance CSV
+                </button>
+              </div>
+            </div>
+            <div class="teacher-admin-callouts">
+              <div class="teacher-reminder-card">
+                <p class="section-label">Upcoming Salary Reminder</p>
+                <strong id="teacher-due-reminder-title">No reminder</strong>
+                <p id="teacher-due-reminder-text" class="muted small">All teacher salaries are updated.</p>
+              </div>
+              <div class="teacher-reminder-card teacher-reminder-card-accent">
+                <p class="section-label">Highest Attendance Teacher</p>
+                <strong id="teacher-top-teacher-name">-</strong>
+                <p id="teacher-top-teacher-text" class="muted small">Attendance leaderboard updates live.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card span-12 teacher-kpi-panel" data-admin-section="teachers">
+            <div class="teacher-kpi-grid">
+              <div class="teacher-kpi-card accent-blue">
+                <div class="teacher-kpi-icon">TC</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Total Teachers</p>
+                  <strong id="teacher-total-metric">0</strong>
+                  <span id="teacher-total-trend" class="teacher-kpi-trend">0 active records</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-green">
+                <div class="teacher-kpi-icon">PD</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Salary Paid</p>
+                  <strong id="teacher-paid-metric">0</strong>
+                  <span id="teacher-paid-trend" class="teacher-kpi-trend">0% cleared</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-amber">
+                <div class="teacher-kpi-icon">PN</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Salary Pending</p>
+                  <strong id="teacher-unpaid-metric">0</strong>
+                  <span id="teacher-unpaid-trend" class="teacher-kpi-trend">No pending salaries</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-violet">
+                <div class="teacher-kpi-icon">AT</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Avg Attendance</p>
+                  <strong id="teacher-attendance-metric">0%</strong>
+                  <span id="teacher-attendance-trend" class="teacher-kpi-trend">0 teachers above 95%</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-slate">
+                <div class="teacher-kpi-icon">EX</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Monthly Salary Expense</p>
+                  <strong id="teacher-expense-metric">Rs 0</strong>
+                  <span id="teacher-expense-trend" class="teacher-kpi-trend">Total monthly payroll</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-rose">
+                <div class="teacher-kpi-icon">AB</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Teachers Absent Today</p>
+                  <strong id="teacher-absent-metric">0</strong>
+                  <span id="teacher-absent-trend" class="teacher-kpi-trend">No follow-up needed</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-orange">
+                <div class="teacher-kpi-icon">PA</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Pending Salary Amount</p>
+                  <strong id="teacher-pending-amount-metric">Rs 0</strong>
+                  <span id="teacher-pending-amount-trend" class="teacher-kpi-trend">Amount awaiting payout</span>
+                </div>
+              </div>
+              <div class="teacher-kpi-card accent-cyan">
+                <div class="teacher-kpi-icon">HT</div>
+                <div class="teacher-kpi-copy">
+                  <p class="section-label">Highest Attendance</p>
+                  <strong id="teacher-top-attendance-metric">0%</strong>
+                  <span id="teacher-top-attendance-trend" class="teacher-kpi-trend">No teacher selected</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card span-4 teacher-form-card" id="teacher-tools" data-admin-section="teachers">
+            <div class="card-head teacher-card-head-compact">
+              <div>
+                <p class="section-label">Teacher Access and Salary Setup</p>
+                <h3 class="section-title">Create or Update Teacher</h3>
+              </div>
+              <button id="teacher-cancel-edit" class="btn btn-secondary teacher-reset-button is-hidden" type="button">
+                Cancel Edit
+              </button>
+            </div>
+            <form id="teacher-form" class="form-stack compact-form teacher-admin-form">
+              <input name="teacherId" type="hidden" />
+              <div class="teacher-form-grid">
+                <label class="field">
+                  <span>Teacher Name</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Nm</span>
+                    <input name="name" type="text" required />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Subject</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Sb</span>
+                    <input name="subject" type="text" required />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Assigned Class</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Cl</span>
+                    <input name="classTeacherOf" type="text" placeholder="Class 7-A" required />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Salary</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Rs</span>
+                    <input name="salary" type="number" min="0" placeholder="28000" required />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Phone Number</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Ph</span>
+                    <input name="phone" type="tel" placeholder="+91 9876543210" />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Email</span>
+                  <div class="input-shell">
+                    <span class="field-icon">@</span>
+                    <input name="email" type="email" placeholder="teacher@sbhs.edu" />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Joining Date</span>
+                  <div class="input-shell">
+                    <span class="field-icon">Dt</span>
+                    <input name="joiningDate" type="date" />
+                  </div>
+                </label>
+                <label class="field">
+                  <span>Password</span>
+                  <div class="input-shell input-shell-password">
+                    <span class="field-icon">Pw</span>
+                    <input id="teacher-password-input" name="password" type="password" placeholder="Create password" required />
+                    <button id="teacher-password-toggle" class="input-toggle" type="button">Show</button>
+                  </div>
+                </label>
+                <label class="field field-span-2">
+                  <span>Teacher Photo</span>
+                  <div class="input-shell file-input-shell">
+                    <span class="field-icon">Up</span>
+                    <input name="photo" type="file" accept="image/*" />
+                  </div>
+                </label>
+              </div>
+              <div class="teacher-form-actions">
+                <button id="teacher-submit-button" class="btn btn-primary btn-block" type="submit">
+                  Create Teacher
+                </button>
+              </div>
+            </form>
+            <p id="teacher-form-message" class="feedback-message"></p>
+          </article>
+
+          <article class="section-card span-8 teacher-records-card" data-admin-section="teachers">
+            <div class="card-head teacher-card-head-compact">
+              <div>
+                <p class="section-label">Teacher Salary and Attendance Records</p>
+                <h3 class="section-title">Operational Teacher List</h3>
+              </div>
+              <button id="teacher-history-summary-button" class="btn btn-secondary teacher-summary-button" type="button">
+                Salary History
+              </button>
+            </div>
+            <div class="teacher-filter-strip">
+              <label class="teacher-filter-item teacher-filter-item-search">
+                <span class="sr-only">Search teacher</span>
+                <input id="teacher-search-input" type="text" placeholder="Live search by name or ID" />
+              </label>
+              <label class="teacher-filter-item">
+                <select id="teacher-class-filter">
+                  <option value="all">All Classes</option>
+                </select>
+              </label>
+              <label class="teacher-filter-item">
+                <select id="teacher-salary-filter">
+                  <option value="all">All Salary Status</option>
+                  <option value="paid">Paid</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </label>
+              <label class="teacher-filter-item">
+                <select id="teacher-attendance-filter">
+                  <option value="all">All Attendance</option>
+                  <option value="high">95% and above</option>
+                  <option value="medium">85% to 94%</option>
+                  <option value="low">Below 85%</option>
+                </select>
+              </label>
+              <label class="teacher-filter-item">
+                <select id="teacher-sort-filter">
+                  <option value="name">Sort: Name</option>
+                  <option value="salaryHigh">Salary High-Low</option>
+                  <option value="salaryLow">Salary Low-High</option>
+                  <option value="attendanceHigh">Attendance High-Low</option>
+                  <option value="attendanceLow">Attendance Low-High</option>
+                </select>
+              </label>
+            </div>
+            <div class="teacher-records-shell">
+              <div class="teacher-records-header">
+                <span>Teacher</span>
+                <span>Salary</span>
+                <span>Attendance</span>
+                <span>Status</span>
+                <span>Actions</span>
+              </div>
+              <div id="teacher-table-body" class="teacher-records-list"></div>
+            </div>
+          </article>
+
+          <article class="section-card span-8 teacher-analytics-card" data-admin-section="teachers">
+            <div class="card-head teacher-card-head-compact">
+              <div>
+                <p class="section-label">Attendance Analytics</p>
+                <h3 class="section-title">Teacher Attendance Snapshot</h3>
+              </div>
+              <button id="teacher-analytics-modal-button" class="btn btn-secondary teacher-summary-button" type="button">
+                Expand Analytics
+              </button>
+            </div>
+            <div class="teacher-analytics-layout">
+              <div class="teacher-analytics-chart-panel">
+                <div id="teacher-attendance-chart" class="bar-chart teacher-bar-chart"></div>
+              </div>
+              <div id="teacher-attendance-insights" class="teacher-analytics-insights"></div>
+            </div>
+          </article>
+
+          <article class="section-card span-4 teacher-ops-card" data-admin-section="teachers">
+            <p class="section-label">Operational Control</p>
+            <h3 class="section-title">Quick School Admin Signals</h3>
+            <div id="teacher-ops-list" class="stack-list compact-stack"></div>
+          </article>
+
+          <div id="teacher-admin-modal" class="admin-modal is-hidden" aria-hidden="true">
+            <div class="admin-modal-backdrop" data-modal-close="teacher-admin-modal"></div>
+            <div class="admin-modal-card">
+              <div class="admin-modal-head">
+                <div>
+                  <p id="teacher-modal-label" class="section-label">Teacher Details</p>
+                  <h3 id="teacher-modal-title" class="section-title">Teacher Profile</h3>
+                </div>
+                <button id="teacher-modal-close" class="modal-close-button" type="button">Close</button>
+              </div>
+              <div id="teacher-modal-body" class="admin-modal-body"></div>
+            </div>
+          </div>
+
+          <article class="section-card span-5" id="student-tools" data-admin-section="students">
+            <p class="section-label">Add Student and Create Dashboard</p>
+            <form id="student-form" class="form-stack">
+              <label class="field">
+                <span>Student Name</span>
+                <input name="name" type="text" required />
+              </label>
+              <label class="field">
+                <span>Class</span>
+                <input name="className" type="text" placeholder="Class 5-A" required />
+              </label>
+              <label class="field">
+                <span>Roll Number</span>
+                <input name="rollNo" type="text" required />
+              </label>
+              <label class="field">
+                <span>Password</span>
+                <input name="password" type="text" placeholder="Create password" required />
+              </label>
+              <label class="field">
+                <span>Total Fees</span>
+                <input name="totalFees" type="number" min="0" placeholder="18000" required />
+              </label>
+              <button class="btn btn-primary btn-block" type="submit">Add Student</button>
+            </form>
+            <p id="student-form-message" class="feedback-message"></p>
+          </article>
+
+          <article class="section-card table-card span-7" data-admin-section="students">
+            <div class="card-head">
+              <div>
+                <p class="section-label">Student List</p>
+                <h3 class="section-title">All Students</h3>
+              </div>
+              <div class="table-search">
+                <input id="student-search-input" type="text" placeholder="Search by student name or roll no" />
+                <button id="student-search-button" class="btn btn-secondary table-search-button" type="button">Search</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>ID</th>
+                    <th>Class</th>
+                    <th>Roll</th>
+                    <th>Paid</th>
+                    <th>Pending</th>
+                    <th>Attendance</th>
+                    <th>Performance</th>
+                  </tr>
+                </thead>
+                <tbody id="student-list-table-body"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="section-card span-6" id="performance-tools" data-admin-section="finance">
+            <p class="section-label">Update Student Class and Fees Card</p>
+            <form id="student-update-form" class="form-stack">
+              <label class="field">
+                <span>Select Student</span>
+                <select id="update-student-id" name="studentId"></select>
+              </label>
+              <label class="field">
+                <span>Class</span>
+                <input name="className" type="text" required />
+              </label>
+              <label class="field">
+                <span>Total Fees</span>
+                <input name="totalFees" type="number" min="0" required />
+              </label>
+              <label class="field">
+                <span>Paid Fees</span>
+                <input name="paidFees" type="number" min="0" required />
+              </label>
+              <label class="field">
+                <span>Pending Fees</span>
+                <input name="pendingFees" type="number" min="0" required />
+              </label>
+              <label class="field">
+                <span>Due Date</span>
+                <input name="dueDate" type="date" required />
+              </label>
+              <label class="field">
+                <span>Fine</span>
+                <input name="fine" type="number" min="0" required />
+              </label>
+              <button class="btn btn-primary btn-block" type="submit">Update Student Record</button>
+            </form>
+            <p id="student-update-message" class="feedback-message"></p>
+          </article>
+
+          <article class="section-card span-6" data-admin-section="finance">
+            <p class="section-label">Fee Summary</p>
+            <div class="metrics-line metrics-line-2">
+              <div class="metric">
+                <p class="section-label">Total Paid</p>
+                <strong id="fees-paid-total">Rs 0</strong>
+              </div>
+              <div class="metric">
+                <p class="section-label">Total Pending</p>
+                <strong id="fees-pending-total">Rs 0</strong>
+              </div>
+              <div class="metric">
+                <p class="section-label">Total Fine</p>
+                <strong id="fees-fine-total">Rs 0</strong>
+              </div>
+              <div class="metric">
+                <p class="section-label">Due This Month</p>
+                <strong id="fees-due-count">0</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="section-card table-card span-12" data-admin-section="finance">
+            <div class="card-head">
+              <div>
+                <p class="section-label">Student Record List</p>
+                <h3 class="section-title">All Student Fee and Attendance Details</h3>
+              </div>
+              <div class="table-search">
+                <input id="finance-student-search-input" type="text" placeholder="Search by student name or roll no" />
+                <button id="finance-student-search-button" class="btn btn-secondary table-search-button" type="button">Search</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Class</th>
+                    <th>Paid</th>
+                    <th>Pending</th>
+                    <th>Due Date</th>
+                    <th>Fine</th>
+                    <th>Attendance</th>
+                  </tr>
+                </thead>
+                <tbody id="student-table-body"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="section-card span-6" data-admin-section="academics">
+            <p class="section-label">Send Notice</p>
+            <form id="notice-form" class="form-stack">
+              <label class="field">
+                <span>Notice Title</span>
+                <input name="title" type="text" required />
+              </label>
+              <label class="field">
+                <span>Message</span>
+                <textarea name="message" rows="6" required></textarea>
+              </label>
+              <button class="btn btn-primary btn-block" type="submit">Publish Notice</button>
+            </form>
+            <p id="notice-form-message" class="feedback-message"></p>
+          </article>
+
+          <article class="section-card span-6" data-admin-section="academics overview">
+            <p class="section-label">Latest Notices</p>
+            <div id="notice-list" class="stack-list"></div>
+          </article>
+
+          <article class="section-card span-6" data-admin-section="settings">
+            <p class="section-label">Portal Settings Reference</p>
+            <div class="stack-list">
+              <article class="list-card">
+                <strong>System Mode</strong>
+                <p class="muted small">Working browser-storage model inspired by the coaching portal section flow.</p>
+              </article>
+              <article class="list-card">
+                <strong>Recommended Next Step</strong>
+                <p class="muted small">Move this into an Express or database-backed app if you want multi-user real deployment.</p>
+              </article>
+              <article class="list-card">
+                <strong>Demo Admin Login</strong>
+                <p class="muted small">`admin` / `admin123`</p>
+              </article>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+    <script>
+      window.SBHSApp.initAdminPage();
+    </script>
+  </body>
+</html>
