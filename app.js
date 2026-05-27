@@ -101,19 +101,58 @@ const SBHSApp = (() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
       return seed;
     }
-    const parsed = JSON.parse(raw);
-    const normalized = normalizeData(parsed);
-    if (JSON.stringify(parsed) !== JSON.stringify(normalized)) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+    try {
+      const parsed = JSON.parse(raw);
+      const normalized = normalizeData(parsed);
+      if (JSON.stringify(parsed) !== JSON.stringify(normalized)) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+      }
+      return normalized;
+    } catch {
+      const seed = normalizeData(createSeedData());
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
+      return seed;
     }
-    return normalized;
   };
 
   const saveData = (data) => localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   const normalizeData = (rawData) => {
+    const seed = createSeedData();
+    const incomingAdmins = Array.isArray(rawData.admins) ? rawData.admins : [];
+    const incomingTeachers = Array.isArray(rawData.teachers) ? rawData.teachers : [];
+    const incomingStudents = Array.isArray(rawData.students) ? rawData.students : [];
+    const incomingNotices = Array.isArray(rawData.notices) ? rawData.notices : [];
+    const incomingHomework = Array.isArray(rawData.homework) ? rawData.homework : [];
+    const incomingResources = Array.isArray(rawData.resources) ? rawData.resources : [];
+    const incomingAttendanceLogs = Array.isArray(rawData.attendanceLogs) ? rawData.attendanceLogs : [];
+
+    const admins = incomingAdmins.length
+      ? incomingAdmins
+      : seed.admins;
+    const teachers = incomingTeachers.length
+      ? incomingTeachers
+      : seed.teachers;
+    const students = incomingStudents.length
+      ? incomingStudents
+      : seed.students;
+
+    const defaultAdmin = seed.admins[0];
+    const defaultAdminIndex = admins.findIndex((admin) => admin.id === defaultAdmin.id);
+
+    if (defaultAdminIndex === -1) {
+      admins.push(defaultAdmin);
+    } else {
+      admins[defaultAdminIndex] = {
+        ...admins[defaultAdminIndex],
+        id: defaultAdmin.id,
+        password: defaultAdmin.password,
+        name: admins[defaultAdminIndex].name || defaultAdmin.name,
+      };
+    }
+
     const data = {
-      admins: rawData.admins || [],
-      teachers: (rawData.teachers || []).map((teacher, index) => {
+      admins,
+      teachers: teachers.map((teacher, index) => {
         const salary = Number(teacher.salary || 0);
         const attendancePercent = Number(teacher.attendancePercent || 0);
         const salaryHistory = Array.isArray(teacher.salaryHistory)
@@ -144,15 +183,15 @@ const SBHSApp = (() => {
           salaryHistory,
         };
       }),
-      students: (rawData.students || []).map((student) => ({
+      students: students.map((student) => ({
         ...student,
         performanceAverage:
           student.performanceAverage ?? calculatePerformanceAverage(student.performance || []),
       })),
-      notices: rawData.notices || [],
-      homework: rawData.homework || [],
-      resources: rawData.resources || [],
-      attendanceLogs: rawData.attendanceLogs || [],
+      notices: incomingNotices.length ? incomingNotices : seed.notices,
+      homework: incomingHomework.length ? incomingHomework : seed.homework,
+      resources: incomingResources.length ? incomingResources : seed.resources,
+      attendanceLogs: incomingAttendanceLogs,
     };
     return data;
   };
@@ -1848,4 +1887,13 @@ const SBHSApp = (() => {
   };
 })();
 
-window.SBHSApp = SBHSApp;
+export const {
+  initLoginPage,
+  initAdminPage,
+  initTeacherPage,
+  initStudentPage,
+} = SBHSApp;
+
+if (typeof window !== "undefined") {
+  window.SBHSApp = SBHSApp;
+}
