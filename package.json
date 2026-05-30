@@ -9,6 +9,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@vitejs/plugin-react": "^6.0.2",
+    "cloudinary": "^2.10.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.16.0",
     "react": "^19.2.6",
