@@ -1,0 +1,4 @@
+[      64ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8014/login.html?role=student:0
+[   95251ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:8014/@vite/client:968
+[  497097ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8014/login.html:0
+[  602319ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:8014/@vite/client:968

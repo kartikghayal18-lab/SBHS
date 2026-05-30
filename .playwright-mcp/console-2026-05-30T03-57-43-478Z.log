@@ -1,0 +1,5 @@
+[      66ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8014/login.html?role=student:0
+[   35211ms] TypeError: Cannot read properties of undefined (reading 'slice')
+    at renderStudentPage (http://127.0.0.1:8014/app.js:1481:43)
+    at Object.initStudentPage [as student] (http://127.0.0.1:8014/app.js:1574:3)
+    at http://127.0.0.1:8014/src/static-main.js:8:20

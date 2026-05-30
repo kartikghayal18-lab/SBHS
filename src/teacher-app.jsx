@@ -53,9 +53,12 @@ import {
   createId,
   getSession,
   loadERPData,
+  loadERPDataAsync,
   saveERPData,
+  subscribeERPData,
   todayMeta,
 } from "./lib/erp-store";
+import { uploadPortalFile } from "./lib/remote-erp";
 import {
   calculateAverage,
   clamp,
@@ -82,6 +85,9 @@ const initialHomeworkForm = {
   dueDate: todayMeta.todayIso,
   description: "",
   attachmentName: "",
+  attachmentUrl: "",
+  attachmentPublicId: "",
+  attachmentFile: null,
 };
 
 const initialResourceForm = {
@@ -90,6 +96,9 @@ const initialResourceForm = {
   title: "",
   description: "",
   attachmentName: "",
+  attachmentUrl: "",
+  attachmentPublicId: "",
+  attachmentFile: null,
 };
 
 function attendanceTone(value) {
@@ -187,6 +196,20 @@ export default function TeacherApp() {
       window.location.href = "./login.html?role=teacher";
     }
   }, [session]);
+
+  useEffect(() => {
+    let active = true;
+    loadERPDataAsync().then((remoteData) => {
+      if (active) setData(remoteData);
+    });
+    const unsubscribe = subscribeERPData((nextData) => {
+      if (active) setData(nextData);
+    });
+    return () => {
+      active = false;
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     if (!toasts.length) return undefined;
@@ -953,11 +976,17 @@ export default function TeacherApp() {
         <SectionTitle eyebrow="Homework Hub" title="Publish classroom homework" description="Built for quick mobile entry with local file upload support." />
         <form
           className="mt-5 grid gap-4"
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
             if (!homeworkForm.title || !homeworkForm.description) {
               queueToast("Add homework title and description first.", "warning");
               return;
+            }
+            let uploadedFile = null;
+            try {
+              uploadedFile = await uploadPortalFile(homeworkForm.attachmentFile, "sbhs-portal/homework");
+            } catch {
+              queueToast("File upload was skipped. Homework will still be saved.", "warning");
             }
             updateStore((next) => {
               next.homework.unshift({
@@ -967,7 +996,9 @@ export default function TeacherApp() {
                 title: homeworkForm.title,
                 description: homeworkForm.description,
                 dueDate: homeworkForm.dueDate,
-                attachmentName: homeworkForm.attachmentName,
+                attachmentName: uploadedFile?.originalName || homeworkForm.attachmentName,
+                attachmentUrl: uploadedFile?.url || homeworkForm.attachmentUrl,
+                attachmentPublicId: uploadedFile?.publicId || homeworkForm.attachmentPublicId,
                 date: todayMeta.todayReadable,
               });
               addActivity(next, {
@@ -987,7 +1018,14 @@ export default function TeacherApp() {
           <InputField
             label="Upload PDF or image"
             type="file"
-            onChange={(event) => setHomeworkForm((current) => ({ ...current, attachmentName: event.target.files?.[0]?.name || "" }))}
+            onChange={(event) => {
+              const file = event.target.files?.[0] || null;
+              setHomeworkForm((current) => ({
+                ...current,
+                attachmentName: file?.name || "",
+                attachmentFile: file,
+              }));
+            }}
             helper={homeworkForm.attachmentName ? `Selected: ${homeworkForm.attachmentName}` : "Teachers can upload from local device"}
           />
           <GradientButton type="submit" className="w-full">
@@ -1031,11 +1069,17 @@ export default function TeacherApp() {
         <SectionTitle eyebrow="Notes and Test Papers" title="Content manager for class resources" description="Upload notes, revision sheets, and test papers to the selected class." />
         <form
           className="mt-5 grid gap-4"
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
             if (!resourceForm.title || !resourceForm.description) {
               queueToast("Add title and details for the resource.", "warning");
               return;
+            }
+            let uploadedFile = null;
+            try {
+              uploadedFile = await uploadPortalFile(resourceForm.attachmentFile, "sbhs-portal/resources");
+            } catch {
+              queueToast("File upload was skipped. Resource will still be saved.", "warning");
             }
             updateStore((next) => {
               next.resources.unshift({
@@ -1045,7 +1089,9 @@ export default function TeacherApp() {
                 teacherId: teacher.id,
                 title: resourceForm.title,
                 description: resourceForm.description,
-                attachmentName: resourceForm.attachmentName,
+                attachmentName: uploadedFile?.originalName || resourceForm.attachmentName,
+                attachmentUrl: uploadedFile?.url || resourceForm.attachmentUrl,
+                attachmentPublicId: uploadedFile?.publicId || resourceForm.attachmentPublicId,
                 date: todayMeta.todayReadable,
               });
               addActivity(next, {
@@ -1072,7 +1118,14 @@ export default function TeacherApp() {
           <InputField
             label="Upload PDF or image"
             type="file"
-            onChange={(event) => setResourceForm((current) => ({ ...current, attachmentName: event.target.files?.[0]?.name || "" }))}
+            onChange={(event) => {
+              const file = event.target.files?.[0] || null;
+              setResourceForm((current) => ({
+                ...current,
+                attachmentName: file?.name || "",
+                attachmentFile: file,
+              }));
+            }}
             helper={resourceForm.attachmentName ? `Selected: ${resourceForm.attachmentName}` : "Local device uploads supported"}
           />
           <GradientButton type="submit" className="w-full">

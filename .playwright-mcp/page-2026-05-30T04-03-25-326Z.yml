@@ -1,0 +1,30 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]: SBHS Secure Access
+    - heading "Portal Login" [level=1] [ref=e5]
+    - paragraph [ref=e6]: Login as admin, teacher, or student. New teachers and students added by admin can sign in with the IDs and passwords created in the admin dashboard.
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]: Role
+        - combobox "Role" [ref=e10]:
+          - option "Admin"
+          - option "Teacher" [selected]
+          - option "Student"
+      - generic [ref=e11]:
+        - generic [ref=e12]: Login ID
+        - textbox "Login ID" [ref=e13]:
+          - /placeholder: Enter login ID
+      - generic [ref=e14]:
+        - generic [ref=e15]: Password
+        - textbox "Password" [ref=e16]:
+          - /placeholder: Enter password
+      - button "Sign In" [ref=e17]
+    - generic [ref=e18]:
+      - strong [ref=e19]: Demo Accounts
+      - list [ref=e20]:
+        - listitem [ref=e21]: "Admin: `admin` / `admin123`"
+        - listitem [ref=e22]: "Teacher: `SBHS-T001` / `teach123`"
+        - listitem [ref=e23]: "Student: `SBHS-S001` / `stud123`"
+    - paragraph [ref=e24]
+    - link "Back to portal home" [ref=e25] [cursor=pointer]:
+      - /url: ./index.html

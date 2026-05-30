@@ -1,3 +1,9 @@
+import {
+  fetchRemoteERPState,
+  isRemoteERPConfigured,
+  saveRemoteERPState,
+} from "./src/lib/remote-erp.js";
+
 const SBHSApp = (() => {
   const STORAGE_KEY = "sbhs-portal-data-v1";
   const SESSION_KEY = "sbhs-portal-session-v1";
@@ -115,7 +121,60 @@ const SBHSApp = (() => {
     }
   };
 
-  const saveData = (data) => localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  const saveData = (data) => {
+    const normalized = normalizeData(data);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+    if (isRemoteERPConfigured()) {
+      saveRemoteERPState(normalized).catch((error) => console.warn(error));
+    }
+  };
+  const hydrateRemoteData = async () => {
+    if (!isRemoteERPConfigured()) return getData();
+
+    try {
+      const remoteState = await fetchRemoteERPState();
+      if (remoteState?.payload) {
+        const merged = mergeERPData(normalizeData(remoteState.payload), getData());
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        return merged;
+      }
+
+      const localData = getData();
+      await saveRemoteERPState(localData);
+      return localData;
+    } catch (error) {
+      console.warn(error);
+      return getData();
+    }
+  };
+
+  const mergeRecordsById = (primary = [], fallback = []) => {
+    const records = new Map();
+    fallback.forEach((item) => {
+      if (item?.id) records.set(item.id, item);
+    });
+    primary.forEach((item) => {
+      if (item?.id) records.set(item.id, { ...(records.get(item.id) || {}), ...item });
+    });
+    return Array.from(records.values());
+  };
+
+  const mergeERPData = (remoteData, localData) => normalizeData({
+    ...localData,
+    ...remoteData,
+    admins: mergeRecordsById(remoteData.admins, localData.admins),
+    teachers: mergeRecordsById(remoteData.teachers, localData.teachers),
+    students: mergeRecordsById(remoteData.students, localData.students),
+    notices: remoteData.notices?.length ? remoteData.notices : localData.notices,
+    homework: remoteData.homework?.length ? remoteData.homework : localData.homework,
+    resources: remoteData.resources?.length ? remoteData.resources : localData.resources,
+    attendanceLogs: remoteData.attendanceLogs?.length ? remoteData.attendanceLogs : localData.attendanceLogs,
+    payments: remoteData.payments?.length ? remoteData.payments : localData.payments,
+    activities: remoteData.activities?.length ? remoteData.activities : localData.activities,
+    events: remoteData.events?.length ? remoteData.events : localData.events,
+    classrooms: remoteData.classrooms?.length ? remoteData.classrooms : localData.classrooms,
+  });
+
   const normalizeData = (rawData) => {
     const seed = createSeedData();
     const incomingAdmins = Array.isArray(rawData.admins) ? rawData.admins : [];
@@ -125,6 +184,10 @@ const SBHSApp = (() => {
     const incomingHomework = Array.isArray(rawData.homework) ? rawData.homework : [];
     const incomingResources = Array.isArray(rawData.resources) ? rawData.resources : [];
     const incomingAttendanceLogs = Array.isArray(rawData.attendanceLogs) ? rawData.attendanceLogs : [];
+    const incomingPayments = Array.isArray(rawData.payments) ? rawData.payments : [];
+    const incomingActivities = Array.isArray(rawData.activities) ? rawData.activities : [];
+    const incomingEvents = Array.isArray(rawData.events) ? rawData.events : [];
+    const incomingClassrooms = Array.isArray(rawData.classrooms) ? rawData.classrooms : [];
 
     const admins = incomingAdmins.length
       ? incomingAdmins
@@ -171,6 +234,7 @@ const SBHSApp = (() => {
             : [];
         return {
           ...teacher,
+          password: String(teacher.password || ""),
           salary,
           attendancePercent,
           salaryPaid: Boolean(teacher.salaryPaid),
@@ -183,15 +247,24 @@ const SBHSApp = (() => {
           salaryHistory,
         };
       }),
-      students: students.map((student) => ({
-        ...student,
-        performanceAverage:
-          student.performanceAverage ?? calculatePerformanceAverage(student.performance || []),
-      })),
+      students: students.map((student) => {
+        const performance = Array.isArray(student.performance) ? student.performance : [];
+        return {
+          ...student,
+          password: String(student.password || ""),
+          performance,
+          performanceAverage:
+            student.performanceAverage ?? calculatePerformanceAverage(performance),
+        };
+      }),
       notices: incomingNotices.length ? incomingNotices : seed.notices,
       homework: incomingHomework.length ? incomingHomework : seed.homework,
       resources: incomingResources.length ? incomingResources : seed.resources,
       attendanceLogs: incomingAttendanceLogs,
+      payments: incomingPayments,
+      activities: incomingActivities,
+      events: incomingEvents,
+      classrooms: incomingClassrooms,
     };
     return data;
   };
@@ -367,15 +440,15 @@ const SBHSApp = (() => {
     new URLSearchParams(window.location.search).get("role") || "admin";
 
   const initLoginPage = () => {
-    getData();
+    hydrateRemoteData();
     const roleSelect = document.getElementById("role");
     const loginForm = document.getElementById("login-form");
     if (!roleSelect || !loginForm) return;
 
     roleSelect.value = getRoleFromUrl();
-    loginForm.addEventListener("submit", (event) => {
+    loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const data = getData();
+      const data = await hydrateRemoteData();
       const formData = new FormData(loginForm);
       const role = formData.get("role");
       const loginId = String(formData.get("loginId")).trim();
@@ -387,7 +460,9 @@ const SBHSApp = (() => {
         student: data.students,
       };
       const user = buckets[role].find(
-        (entry) => entry.id === loginId && entry.password === password
+        (entry) =>
+          (entry.id === loginId || (role === "student" && entry.rollNo === loginId)) &&
+          String(entry.password || "") === password
       );
 
       if (!user) {
@@ -1877,6 +1952,7 @@ const SBHSApp = (() => {
     bindLogout("logout-student");
     initStudentSectionTabs();
     renderStudentPage();
+    hydrateRemoteData().then(() => renderStudentPage());
   };
 
   return {

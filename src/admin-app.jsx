@@ -61,8 +61,10 @@ import {
   getSession,
   getTheme,
   loadERPData,
+  loadERPDataAsync,
   saveERPData,
   saveTheme,
+  subscribeERPData,
   todayMeta,
 } from "./lib/erp-store";
 import {
@@ -311,6 +313,20 @@ export default function AdminApp() {
     if (!session || session.role !== "admin") {
       window.location.href = "./login.html?role=admin";
     }
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    loadERPDataAsync().then((remoteData) => {
+      if (active) setData(remoteData);
+    });
+    const unsubscribe = subscribeERPData((nextData) => {
+      if (active) setData(nextData);
+    });
+    return () => {
+      active = false;
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -877,7 +893,7 @@ export default function AdminApp() {
                 phone: teacherForm.phone,
                 email: teacherForm.email,
                 joiningDate: teacherForm.joiningDate,
-                password: teacherForm.password,
+                password: teacherForm.password.trim(),
                 photoName: teacherForm.photoName,
                 workload: Number(teacherForm.workload || 0),
                 leaveBalance: Number(teacherForm.leaveBalance || 0),
@@ -899,7 +915,7 @@ export default function AdminApp() {
                 phone: teacherForm.phone,
                 email: teacherForm.email,
                 joiningDate: teacherForm.joiningDate,
-                password: teacherForm.password,
+                password: teacherForm.password.trim(),
                 photoName: teacherForm.photoName,
                 workload: Number(teacherForm.workload || 20),
                 leaveBalance: Number(teacherForm.leaveBalance || 4),
@@ -1039,7 +1055,7 @@ export default function AdminApp() {
             const newStudentId = createStudentId(next.students);
             next.students.unshift({
               id: newStudentId,
-              password: studentForm.password,
+              password: studentForm.password.trim(),
               name: studentForm.name,
               className: studentForm.className,
               rollNo: studentForm.rollNo,

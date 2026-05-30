@@ -1,4 +1,9 @@
 import { calculateAverage } from "./formatters";
+import {
+  fetchRemoteERPState,
+  isRemoteERPConfigured,
+  saveRemoteERPState,
+} from "./remote-erp";
 
 export const STORAGE_KEY = "sbhs-portal-data-v1";
 export const SESSION_KEY = "sbhs-portal-session-v1";
@@ -324,20 +329,25 @@ const normalizeClassroom = (classroom) => ({
   capacity: Number(classroom.capacity || 50),
 });
 
-const normalizeStudent = (student) => ({
-  parentName: "",
-  parentPhone: "",
-  remarks: "",
-  feeHistory: [],
-  ...student,
-  totalFees: Number(student.totalFees || 0),
-  paidFees: Number(student.paidFees || 0),
-  pendingFees: Number(student.pendingFees || 0),
-  fine: Number(student.fine || 0),
-  attendancePercent: Number(student.attendancePercent || 0),
-  performanceAverage:
-    student.performanceAverage ?? calculatePerformanceAverage(student.performance || []),
-});
+const normalizeStudent = (student) => {
+  const performance = Array.isArray(student.performance) ? student.performance : [];
+
+  return {
+    parentName: "",
+    parentPhone: "",
+    remarks: "",
+    feeHistory: [],
+    ...student,
+    performance,
+    totalFees: Number(student.totalFees || 0),
+    paidFees: Number(student.paidFees || 0),
+    pendingFees: Number(student.pendingFees || 0),
+    fine: Number(student.fine || 0),
+    attendancePercent: Number(student.attendancePercent || 0),
+    performanceAverage:
+      student.performanceAverage ?? calculatePerformanceAverage(performance),
+  };
+};
 
 const buildClassroomCollection = ({ classrooms = [], students = [], teachers = [] }) => {
   const classroomMap = new Map();
@@ -430,7 +440,82 @@ export const loadERPData = () => {
 };
 
 export const saveERPData = (data) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeData(data)));
+  const normalized = normalizeData(data);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+  window.dispatchEvent(new CustomEvent("sbhs-erp-data-updated", { detail: normalized }));
+  if (isRemoteERPConfigured()) {
+    saveRemoteERPState(normalized).catch((error) => {
+      console.warn(error);
+    });
+  }
+};
+
+export const loadERPDataAsync = async () => {
+  const localData = loadERPData();
+  if (!isRemoteERPConfigured()) return localData;
+
+  try {
+    const remoteState = await fetchRemoteERPState();
+    if (remoteState?.payload) {
+      const remoteData = mergeERPData(normalizeData(remoteState.payload), localData);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteData));
+      return remoteData;
+    }
+
+    await saveRemoteERPState(localData);
+    return localData;
+  } catch (error) {
+    console.warn(error);
+    return localData;
+  }
+};
+
+const mergeRecordsById = (primary = [], fallback = []) => {
+  const records = new Map();
+  fallback.forEach((item) => {
+    if (item?.id) records.set(item.id, item);
+  });
+  primary.forEach((item) => {
+    if (item?.id) records.set(item.id, { ...(records.get(item.id) || {}), ...item });
+  });
+  return Array.from(records.values());
+};
+
+const mergeERPData = (remoteData, localData) =>
+  normalizeData({
+    ...localData,
+    ...remoteData,
+    admins: mergeRecordsById(remoteData.admins, localData.admins),
+    teachers: mergeRecordsById(remoteData.teachers, localData.teachers),
+    students: mergeRecordsById(remoteData.students, localData.students),
+    notices: remoteData.notices?.length ? remoteData.notices : localData.notices,
+    homework: remoteData.homework?.length ? remoteData.homework : localData.homework,
+    resources: remoteData.resources?.length ? remoteData.resources : localData.resources,
+    attendanceLogs: remoteData.attendanceLogs?.length ? remoteData.attendanceLogs : localData.attendanceLogs,
+    payments: remoteData.payments?.length ? remoteData.payments : localData.payments,
+    activities: remoteData.activities?.length ? remoteData.activities : localData.activities,
+    events: remoteData.events?.length ? remoteData.events : localData.events,
+    classrooms: remoteData.classrooms?.length ? remoteData.classrooms : localData.classrooms,
+  });
+
+export const subscribeERPData = (callback) => {
+  const handleStorage = (event) => {
+    if (event.key === STORAGE_KEY && event.newValue) {
+      callback(normalizeData(JSON.parse(event.newValue)));
+    }
+  };
+
+  const handleLocalUpdate = (event) => {
+    if (event.detail) callback(normalizeData(event.detail));
+  };
+
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener("sbhs-erp-data-updated", handleLocalUpdate);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener("sbhs-erp-data-updated", handleLocalUpdate);
+  };
 };
 
 export const createId = (prefix) => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;

@@ -1,0 +1,142 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]:
+            - img [ref=e9]
+            - text: Teacher workspace
+          - heading "Test Teacher" [level=1] [ref=e12]
+          - generic [ref=e13]:
+            - generic [ref=e14]: Math
+            - generic [ref=e16]: Online now
+        - generic [ref=e17]:
+          - button "Notifications" [ref=e18]:
+            - img [ref=e19]
+          - button "Logout" [ref=e23]:
+            - img [ref=e24]
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: Students
+            - img [ref=e31]
+          - paragraph [ref=e36]: "3"
+          - generic [ref=e37]: in live class
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: Attendance
+            - img [ref=e41]
+          - paragraph [ref=e45]: 64%
+          - generic [ref=e46]: today's class average
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: Uploads
+            - img [ref=e50]
+          - paragraph [ref=e53]: "0"
+          - generic [ref=e54]: recent teacher uploads
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]: Homework
+            - img [ref=e58]
+          - paragraph [ref=e60]: "0"
+          - generic [ref=e61]: published tasks
+    - generic [ref=e63]:
+      - button "Overview" [ref=e64]:
+        - img [ref=e65]
+        - text: Overview
+      - button "Attendance" [ref=e68]:
+        - img [ref=e69]
+        - text: Attendance
+      - button "Students" [ref=e73]:
+        - img [ref=e74]
+        - text: Students
+      - button "Homework" [ref=e79]:
+        - img [ref=e80]
+        - text: Homework
+      - button "Notes" [ref=e82]:
+        - img [ref=e83]
+        - text: Notes
+      - button "Uploads" [ref=e86]:
+        - img [ref=e87]
+        - text: Uploads
+      - button "Performance" [ref=e90]:
+        - img [ref=e91]
+        - text: Performance
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - img [ref=e100]
+            - text: Live Class Control Center
+          - heading "Class 7-A" [level=2] [ref=e103]
+          - paragraph [ref=e104]: Attendance, homework, performance, and student status in one fast teacher workspace.
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - paragraph [ref=e109]: Today's class summary
+                - heading "64%" [level=3] [ref=e110]
+                - paragraph [ref=e111]: 3 active students connected.
+              - generic [ref=e114]: 64%
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - paragraph [ref=e117]: Attendance streak
+                - paragraph [ref=e118]: 8 days
+              - generic [ref=e119]:
+                - paragraph [ref=e120]: Pending homework
+                - paragraph [ref=e121]: "0"
+          - generic [ref=e122]:
+            - paragraph [ref=e123]: Attendance and submissions
+            - application [ref=e127]:
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - generic [ref=e147]: Mon
+                  - generic [ref=e149]: Tue
+                  - generic [ref=e151]: Wed
+                  - generic [ref=e153]: Thu
+                  - generic [ref=e155]: Fri
+                  - generic [ref=e157]: Sat
+                  - generic [ref=e159]: Sun
+                - generic [ref=e160]:
+                  - generic [ref=e162]: "0"
+                  - generic [ref=e164]: "20"
+                  - generic [ref=e166]: "40"
+                  - generic [ref=e168]: "60"
+                  - generic [ref=e170]: "80"
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - img [ref=e176]
+              - text: Activity Feed
+            - heading "Today's classroom updates" [level=2] [ref=e179]
+            - paragraph [ref=e180]: Fast access to attendance, notices, academic reminders, and uploads.
+          - generic [ref=e183]:
+            - generic [ref=e185]:
+              - paragraph [ref=e186]: 2 teachers flagged for follow-up
+              - paragraph [ref=e187]: Attendance is below ideal threshold today.
+            - generic [ref=e188]: 30 May 2026, 08:00
+        - generic [ref=e189]:
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - img [ref=e193]
+              - text: Timetable and reminders
+            - heading "Teacher daily radar" [level=2] [ref=e196]
+            - paragraph [ref=e197]: High-value classroom reminders optimized for phone usage.
+          - generic [ref=e198]:
+            - generic [ref=e200]:
+              - img [ref=e201]
+              - generic [ref=e205]:
+                - paragraph [ref=e206]: Next exam block
+                - paragraph [ref=e207]: Mathematics Unit Test
+            - generic [ref=e209]:
+              - img [ref=e210]
+              - generic [ref=e213]:
+                - paragraph [ref=e214]: Attendance ready
+                - paragraph [ref=e215]: 3 students available for quick marking.
+            - generic [ref=e217]:
+              - img [ref=e218]
+              - generic [ref=e220]:
+                - paragraph [ref=e221]: Parent communication
+                - paragraph [ref=e222]: Tap any student to message parent or open the student dashboard.
+  - generic [ref=e223]: "0"
